@@ -117,7 +117,7 @@
 
     <ol>
       <li>
-        <p>First change This tool can be used to easily annotate a video, without having to install anything.</p>
+        <p>This tool can be used to easily annotate a video, without having to install anything.</p>
         <p>Optical flow is used to track your annotations, so that have to do as little work as possible ;-)</p>
         <p>This tool works best in Chrome, and has also been successfully tested in Firefox.</p>
       </li>
@@ -621,14 +621,6 @@
         id.on('change keyup paste mouseup', function() {
           annotatedObject.id = this.value;
         });
-        
-        let  motion= $('<input type="text" value="Activity?" />');
-        if (annotatedObject.motion) {
-          motion.val(annotatedObject.motion);
-        }
-        motion.on('change keyup paste mouseup', function() {
-          annotatedObject.motion = this.value;
-        });
 
         let visibleLabel = $('<label>');
         let visible = $('<input type="checkbox" checked="checked" />');
@@ -677,8 +669,6 @@
         div.append($('<br />'));
         div.append(id);
         div.append($('<br />'));
-        div.append(motion);
-        div.append($('<br />'));
         div.append(visibleLabel);
         div.append($('<br />'));
         div.append(hideLabel);
@@ -709,8 +699,6 @@
           xml += '    <name>' + annotatedObject.name + '</name>\n';
           xml += '    <moving>true</moving>\n';
           xml += '    <action/>\n';
-          xml += '    <activity>' + annotatedObject.motion + '</activity>\n';
-          xml += '    <verified>0</verified>\n';
           xml += '    <verified>0</verified>\n';
           xml += '    <id>' + annotatedObject.id + '</id>\n';
           xml += '    <createdFrame>0</createdFrame>\n';
