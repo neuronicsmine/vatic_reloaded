@@ -709,8 +709,7 @@
           xml += '    <name>' + annotatedObject.name + '</name>\n';
           xml += '    <moving>true</moving>\n';
           xml += '    <action/>\n';
-          xml += ' <motion>' + annotatedObject.motion + '</motion>'
-          xml += '    <verified>0</verified>\n';
+          
           xml += '    <id>' + annotatedObject.id + '</id>\n';
           xml += '    <createdFrame>0</createdFrame>\n';
           xml += '    <startFrame>0</startFrame>\n';
@@ -730,6 +729,7 @@
               xml += '    ';
               xml += '<polygon>';
               xml += '<t>' + frameNumber + '</t>';
+              xml += ' <motion>' + annotatedObject.motion + '</motion>';
               xml += '<pt><x>' + bbox.x + '</x><y>' + bbox.y + '</y><l>' + isGroundThrugh + '</l></pt>';
               xml += '<pt><x>' + bbox.x + '</x><y>' + (bbox.y + bbox.height) + '</y><l>' + isGroundThrugh + '</l></pt>';
               xml += '<pt><x>' + (bbox.x + bbox.width) + '</x><y>' + (bbox.y + bbox.height) + '</y><l>' + isGroundThrugh + '</l></pt>';
