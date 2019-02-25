@@ -621,6 +621,13 @@
         id.on('change keyup paste mouseup', function() {
           annotatedObject.id = this.value;
         });
+        let motion = $('<input type="text" value="motion?" />');
+        if (annotatedObject.motion) {
+          motion.val(annotatedObject.motion);
+        }
+        motion.on('change keyup paste mouseup', function() {
+          annotatedObject.motion = this.value;
+        });
 
         let visibleLabel = $('<label>');
         let visible = $('<input type="checkbox" checked="checked" />');
@@ -669,6 +676,8 @@
         div.append($('<br />'));
         div.append(id);
         div.append($('<br />'));
+        div.append(motion);
+        div.append($('<br />'));
         div.append(visibleLabel);
         div.append($('<br />'));
         div.append(hideLabel);
@@ -687,6 +696,7 @@
         xml += '  <filename>not available</filename>\n';
         xml += '  <source>\n';
         xml += '    <type>video</type>\n';
+         xml += '  <motion>motion</motion>\n';
         xml += '    <sourceImage>vatic frames</sourceImage>\n';
         xml += '    <sourceAnnotation>vatic</sourceAnnotation>\n';
         xml += '  </source>\n';
@@ -699,6 +709,7 @@
           xml += '    <name>' + annotatedObject.name + '</name>\n';
           xml += '    <moving>true</moving>\n';
           xml += '    <action/>\n';
+          xml += ' <motion>' + annotatedObject.motion + '</motion>'
           xml += '    <verified>0</verified>\n';
           xml += '    <id>' + annotatedObject.id + '</id>\n';
           xml += '    <createdFrame>0</createdFrame>\n';
