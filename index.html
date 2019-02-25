@@ -380,6 +380,7 @@
         annotatedObject.controls.remove();
         $(annotatedObject.dom).remove();
         annotatedObjectsTracker.annotatedObjects.splice(i, 1);
+        annotatedObjects.motion = 'null';
       }
 
       videoFile.addEventListener('change', extractionFileUploaded, false);
@@ -621,7 +622,13 @@
         id.on('change keyup paste mouseup', function() {
           annotatedObject.id = this.value;
         });
-        
+        let motion = $('<input type="text" value="motion?" />');
+        if (annotatedObject.motion) {
+          motion.val(annotatedObject.motion);
+        }
+        motion.on('change keyup paste mouseup', function() {
+          annotatedObject.motion = this.value;
+        });
 
         let visibleLabel = $('<label>');
         let visible = $('<input type="checkbox" checked="checked" />');
@@ -632,13 +639,6 @@
             annotatedObject.dom.style.display = 'block';
             let jquery = $(annotatedObject.dom);
             let position = jquery.position();
-            let motion = $('<input type="text" value="motion?" />');
-            if (annotatedObject.motion) {
-              motion.val(annotatedObject.motion);
-            }
-            motion.on('change keyup paste mouseup', function() {
-              annotatedObject.motion = this.value;
-            });
             bbox = new BoundingBox(Math.round(position.left), Math.round(position.top), Math.round(jquery.width()), Math.round(jquery.height()));
           } else {
             annotatedObject.dom.style.display = 'none';
@@ -730,7 +730,8 @@
               xml += '    ';
               xml += '<polygon>';
               xml += '<t>' + frameNumber + '</t>';
-              xml += ' <motion>' + annotatedObject.motion + '</motion>';
+              xml += ' <motion>' + annotatedObject.motion + '</motion>'
+              xml += '    <verified>0</verified>\n';
               xml += '<pt><x>' + bbox.x + '</x><y>' + bbox.y + '</y><l>' + isGroundThrugh + '</l></pt>';
               xml += '<pt><x>' + bbox.x + '</x><y>' + (bbox.y + bbox.height) + '</y><l>' + isGroundThrugh + '</l></pt>';
               xml += '<pt><x>' + (bbox.x + bbox.width) + '</x><y>' + (bbox.y + bbox.height) + '</y><l>' + isGroundThrugh + '</l></pt>';
