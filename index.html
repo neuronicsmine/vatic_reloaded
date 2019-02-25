@@ -621,6 +621,14 @@
         id.on('change keyup paste mouseup', function() {
           annotatedObject.id = this.value;
         });
+        
+        let name = $('<input type="text" value="Activity?" />');
+        if (annotatedObject.activity) {
+          name.val(annotatedObject.activity);
+        }
+        name.on('change keyup paste mouseup', function() {
+          annotatedObject.activity = this.value;
+        });
 
         let visibleLabel = $('<label>');
         let visible = $('<input type="checkbox" checked="checked" />');
@@ -669,6 +677,8 @@
         div.append($('<br />'));
         div.append(id);
         div.append($('<br />'));
+        div.append(activity);
+        div.append($('<br />'));
         div.append(visibleLabel);
         div.append($('<br />'));
         div.append(hideLabel);
@@ -699,6 +709,8 @@
           xml += '    <name>' + annotatedObject.name + '</name>\n';
           xml += '    <moving>true</moving>\n';
           xml += '    <action/>\n';
+          xml += '    <activity>' + annotatedObject.activity + '</activity>\n';
+          xml += '    <verified>0</verified>\n';
           xml += '    <verified>0</verified>\n';
           xml += '    <id>' + annotatedObject.id + '</id>\n';
           xml += '    <createdFrame>0</createdFrame>\n';
