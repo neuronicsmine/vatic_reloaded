@@ -621,23 +621,18 @@
         id.on('change keyup paste mouseup', function() {
           annotatedObject.id = this.value;
         });
-       <!-- let motion = $('<input type="text" value="motion?" />');
-        if (annotatedObject.motion) {
+        let motion = $('<input type="text" value="motion?" />');
+        
+        motion.change(function () {
+          // body...
+          if (annotatedObject.motion) {
           motion.val(annotatedObject.motion);
         }
-        motion.on('change keyup paste mouseup', function() {
+           motion.on('change keyup paste mouseup', function() {
           annotatedObject.motion = this.value;
-        });>
-        let motion = $('<input type="text" value="motion?" />');
-        $("body").on('motion', "div", function() {
-            if (annotatedObject.motion) {
-                      motion.val(annotatedObject.motion);
-                    }
-                    motion.on('change keyup paste mouseup', function() {
-                      annotatedObject.motion = this.value;
-                    });
         });
 
+        });
 
         let visibleLabel = $('<label>');
         let visible = $('<input type="checkbox" checked="checked" />');
@@ -655,17 +650,6 @@
           }
           annotatedObject.add(new AnnotatedFrame(player.currentFrame, bbox, true));
         });
-
-        $('mydiv').bind("DOMSubtreeModified",function(){
-          let motion = $('<input type="text" value="motion?" />');
-                  if (annotatedObject.motion) {
-                    motion.val(annotatedObject.motion);
-                  }
-                  motion.on('change keyup paste mouseup', function() {
-                    annotatedObject.motion = this.value;
-                  });
-        });
-
         visibleLabel.append(visible);
         visibleLabel.append('Is visible?');
 
